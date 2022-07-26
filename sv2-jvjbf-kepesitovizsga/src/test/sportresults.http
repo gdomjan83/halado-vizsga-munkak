@@ -1,0 +1,84 @@
+### Sportoló hozzáadás
+POST http://localhost:8080/api/athletes
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "sex": "MALE"
+}
+
+### Sportoló hozzáadás, helytelen név
+POST http://localhost:8080/api/athletes
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "   ",
+  "sex": "MALE"
+}
+### Eredmény hozzáadása sportolóhoz
+POST http://localhost:8080/api/athletes/1/results
+Accept: application/json
+Content-Type: application/json
+
+{
+  "place": "London",
+  "resultDate": "2022-06-04",
+  "sportType": "HAMMER_THROWING",
+  "measure": 1350000.1
+}
+### Eredmény hozzáadása sportolóhoz, rossz hely
+POST http://localhost:8080/api/athletes/1/results
+Accept: application/json
+Content-Type: application/json
+
+{
+  "place": "    ",
+  "resultDate": "2022-06-04",
+  "sportType": "HAMMER_THROWING",
+  "measure": 135.1
+}
+### Eredmény hozzáadása sportolóhoz, rossz dátum
+POST http://localhost:8080/api/athletes/1/results
+Accept: application/json
+Content-Type: application/json
+
+{
+  "place": "London",
+  "resultDate": "2032-06-04",
+  "sportType": "HAMMER_THROWING",
+  "measure": 135.1
+}
+### Eredmény hozzáadása sportolóhoz, rossz mérték
+POST http://localhost:8080/api/athletes/1/results
+Accept: application/json
+Content-Type: application/json
+
+{
+  "place": "London",
+  "resultDate": "2032-06-04",
+  "sportType": "HAMMER_THROWING",
+  "measure": -1.0
+}
+### Eredmény frissítése
+PUT http://localhost:8080/api/results/67
+Content-Type: application/json
+
+{
+  "measure": 123344
+}
+### Eredmény frissítése, rossz id
+PUT http://localhost:8080/api/results/1000
+Content-Type: application/json
+
+{
+  "measure": 122222
+}
+
+### Eredmények lekérdezése
+GET http://localhost:8080/api/results
+Accept: application/json
+### Eredmények lekérdezése, szűréssel
+GET http://localhost:8080/api/results?sportType=HAMMER_THROWING
+Accept: application/json
